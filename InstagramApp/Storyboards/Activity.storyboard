@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lRf-8q-739">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
@@ -13,15 +13,40 @@
             <objects>
                 <viewController storyboardIdentifier="activity" id="lRf-8q-739" customClass="ActivityViewController" customModule="InstagramApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j3E-kz-8OH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BpR-lt-ApY" customClass="CustomSegmentedControl" customModule="InstagramApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="abr-ra-894"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zjb-IX-HJG">
+                                <rect key="frame" x="0.0" y="60" width="414" height="676"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="lQ1-zG-2Pr" firstAttribute="trailing" secondItem="BpR-lt-ApY" secondAttribute="trailing" id="T2F-ZQ-cox"/>
+                            <constraint firstItem="lQ1-zG-2Pr" firstAttribute="bottom" secondItem="Zjb-IX-HJG" secondAttribute="bottom" id="XwG-kf-d1T"/>
+                            <constraint firstItem="lQ1-zG-2Pr" firstAttribute="trailing" secondItem="Zjb-IX-HJG" secondAttribute="trailing" id="gvP-zb-q1v"/>
+                            <constraint firstItem="Zjb-IX-HJG" firstAttribute="leading" secondItem="lQ1-zG-2Pr" secondAttribute="leading" id="ljC-KB-WLi"/>
+                            <constraint firstItem="BpR-lt-ApY" firstAttribute="leading" secondItem="lQ1-zG-2Pr" secondAttribute="leading" id="oAC-qN-df3"/>
+                            <constraint firstItem="Zjb-IX-HJG" firstAttribute="top" secondItem="BpR-lt-ApY" secondAttribute="bottom" id="tDP-ta-LnU"/>
+                            <constraint firstItem="BpR-lt-ApY" firstAttribute="top" secondItem="lQ1-zG-2Pr" secondAttribute="top" id="zVO-HK-pIf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="lQ1-zG-2Pr"/>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="Zjb-IX-HJG" id="1WK-nu-co6"/>
+                        <outlet property="segmentedControl" destination="BpR-lt-ApY" id="vOO-NN-tzn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ll-Bq-y2N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="93" y="28"/>
+            <point key="canvasLocation" x="92.753623188405811" y="27.717391304347828"/>
         </scene>
     </scenes>
 </document>

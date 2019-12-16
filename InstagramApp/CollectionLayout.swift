@@ -18,7 +18,7 @@ class CollectionLayout: UICollectionViewLayout {
             return 0
         }
         let insets = collectionView.contentInset
-        return collectionView.bounds.width - (insets.left + insets.right) - (cellPadding * CGFloat(numberOfColumns - 1))
+        return collectionView.bounds.width - (insets.left + insets.right) - (cellPadding * (CGFloat(numberOfColumns) - 1))
     }
     fileprivate var contentHeight: CGFloat = 0
     override var collectionViewContentSize: CGSize {
@@ -30,7 +30,7 @@ class CollectionLayout: UICollectionViewLayout {
             return
         }
         
-        let itemsPerRow = 3
+        let itemsPerRow: Int = 3
         let normalColumnWidth = contentWidth/CGFloat(itemsPerRow)
         let normalColumnHeight = normalColumnWidth
         
@@ -63,10 +63,37 @@ class CollectionLayout: UICollectionViewLayout {
         for item in 0..<collectionView.numberOfItems(inSection: 0) {
             let indexPath = IndexPath(item: item, section: 0)
             let xPos = xOffsets[itemInSection]
-            let multiplier: Double = floor(Double(item)) / Double(numberOfItemsPerSection)
+            let multiplier: Double = floor(Double(item) / Double(numberOfItemsPerSection))
             let yPos = yOffsets[itemInSection] + (heightOfSection * CGFloat(multiplier))
             var cellWidth = normalColumnWidth
+            var cellHeight = normalColumnHeight
+            
+            if (itemInSection + 1) % 7 == 0 && itemInSection != 0 {
+                cellWidth = featuredColumnWidth
+                cellHeight = featuredColumnHeight
+            }
+            
+            let frame = CGRect(x: xPos, y: yPos, width: cellWidth, height: cellHeight)
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            attributes.frame = frame
+            cache.append(attributes)
+            contentHeight = max(contentHeight, frame.maxY)
+            itemInSection = itemInSection < (numberOfItemsPerSection - 1) ? (itemInSection + 1) : 0
         }
+    }
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        var visibleLayoutAttributes = [UICollectionViewLayoutAttributes]()
+        for attributes in cache {
+            if attributes.frame.intersects(rect) {
+                visibleLayoutAttributes.append(attributes)
+            }
+        }
+        return visibleLayoutAttributes
+    }
+    
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        return cache[indexPath.item]
     }
     
 }

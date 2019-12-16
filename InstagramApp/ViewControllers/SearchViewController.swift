@@ -12,6 +12,10 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     @IBOutlet weak var collectionView: UICollectionView!
     var searchController:UISearchController!
+    lazy var posts: [Post] = {
+        let model = Model()
+        return model.postList
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +50,14 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExploreCollectionViewCell", for: indexPath) as! ExploreCollectionViewCell
+        cell.exploreImage.image = posts[indexPath.row].postImage
+        return cell
     }
+    
+    
 }
