@@ -21,4 +21,4 @@ An Exercise To Learn UI/UX and iOS Development by Gwinyai Nyatsoka
   - slides horizontally between two view controllers
   - Uses NotificationCenter
   - Allows forward and reverse movements
-- Accesses PhotoLibrary and Camera
+- Accesses custom photo library and PhotoLibrary and custom camera view and Camera api to take photo
