@@ -15,10 +15,15 @@ An Exercise To Learn UI/UX and iOS Development by Gwinyai Nyatsoka
 - Providing the right font sizes and weights
 - Creating table view cells along with their respected xib files
   - and registering the xib files
-- Filling a whole search bar in the navigation bar
 - Creating a collection layout that creates 1 big collection view cell on every third to fourth row.
 - Creating a UIPageViewController in NewPostPageViewController
   - slides horizontally between two view controllers
   - Uses NotificationCenter
   - Allows forward and reverse movements
 - Accesses custom photo library and PhotoLibrary and custom camera view and Camera api to take photo
+- Firebase best practices in querying
+
+- ### Likely To Use Common Features
+  - Animating a post's comment when it is being added by scrolling down to the bottom to let it show
+  - Scroll down pagination
+  - Filling a whole search bar in the navigation bar
