@@ -27,3 +27,4 @@ An Exercise To Learn UI/UX and iOS Development by Gwinyai Nyatsoka
   - Animating a post's comment when it is being added by scrolling down to the bottom to let it show
   - Scroll down pagination
   - Filling a whole search bar in the navigation bar
+  - Search results view
