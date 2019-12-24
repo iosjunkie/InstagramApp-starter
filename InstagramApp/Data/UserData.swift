@@ -5,6 +5,9 @@
 //
 
 import Foundation
+import FirebaseDatabase
+import FirebaseAuth
+import FirebaseStorage
 
 import UIKit
 
@@ -33,4 +36,35 @@ class UsersModel {
     }
     
     
+}
+
+class UserModel {
+    static var collection: DatabaseReference {
+        get {
+            return Database.database().reference().child("users")
+        }
+    }
+    
+    static var personalFeed: DatabaseReference {
+        get {
+            return Database.database().reference().child("user_posts")
+        }
+    }
+    
+    var username: String = ""
+    var bio: String = ""
+    var profileImage: URL?
+    var userId: String
+    
+    
+    // failable initializer
+    init?(_ snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: Any] else {return nil}
+        self.username = value["username"] as? String ?? ""
+        self.bio = value["bio"] as? String ?? ""
+        if let profileImage = value["profile_image"] as? String {
+            self.profileImage = URL(string: profileImage)
+        }
+        self.userId = snapshot.key
+    }
 }

@@ -6,6 +6,12 @@
 
 import Foundation
 
+import FirebaseStorage
+
+import FirebaseAuth
+
+import FirebaseDatabase
+
 import UIKit
 
 struct Post {
@@ -15,12 +21,28 @@ struct Post {
     var postComment: String
     
     var user: User
-    
-    var commentCount: Int
-    
+        
     var likesCount: Int
     
     var datePosted: String
+    
+    var comments: [Comment] = [Comment]()
+    
+    init(postImage: UIImage, postComment: String, user: User, likesCount: Int, datePosted: String, comments: [Comment] = [Comment]()) {
+        
+        self.postImage = postImage
+        
+        self.postComment = postComment
+        
+        self.user = user
+        
+        self.likesCount = likesCount
+        
+        self.datePosted = datePosted
+        
+        self.comments = comments
+        
+    }
     
 }
 
@@ -29,6 +51,15 @@ struct Story {
     var post: Post
     
 }
+
+struct Comment {
+    
+    var user: User
+    
+    var details: String
+    
+}
+
 
 class Model {
     
@@ -48,34 +79,34 @@ class Model {
         
         //users.append(user2)
         
-        let post1 = Post(postImage: UIImage(named: "destination1")!, postComment: "This is a brilliant destination that I recently went to.", user: user1, commentCount: 5, likesCount: 10, datePosted: "3 Sept")
+        let post1 = Post(postImage: UIImage(named: "destination1")!, postComment: "This is a brilliant destination that I recently went to.", user: user1, likesCount: 10, datePosted: "3 Sept", comments: [Comment(user: user2, details: "This is an excellent pricture!")])
         
         postList.append(post1)
         
-        let post2 = Post(postImage: UIImage(named: "destination2")!, postComment: "I am on the wide open road travelling to my new destination.", user: user2, commentCount: 14, likesCount: 12, datePosted: "4 Sept")
+        let post2 = Post(postImage: UIImage(named: "destination2")!, postComment: "I am on the wide open road travelling to my new destination.", user: user2, likesCount: 12, datePosted: "4 Sept", comments: [Comment(user: user1, details: "Is it possible we could go there together sometime? This looks like a really good place."), Comment(user: user1, details: "Nice picture!")])
         
         postList.append(post2)
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination4")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user2, commentCount: 1, likesCount: 18, datePosted: "6 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination4")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user2, likesCount: 18, datePosted: "6 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
         
-        postList.append(Post(postImage: UIImage(named: "destination3")!, postComment: "Can anyone beat this? This has to be the best sunset ever. I will be coming here again very soon!", user: user1, commentCount: 80, likesCount: 122, datePosted: "5 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination3")!, postComment: "Can anyone beat this? This has to be the best sunset ever. I will be coming here again very soon!", user: user1, likesCount: 122, datePosted: "5 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
-        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, commentCount: 5, likesCount: 10, datePosted: "7 Sept"))
+        postList.append(Post(postImage: UIImage(named: "destination5")!, postComment: "The long winding dusty road with the sun setting in the horizon.", user: user1, likesCount: 10, datePosted: "7 Sept"))
         
         storyList.append(Story(post: post1))
         
@@ -84,4 +115,64 @@ class Model {
     }
     
     
+}
+
+class PostModel {
+    static var collection: DatabaseReference {
+        get {
+            return Database.database().reference().child("posts")
+        }
+    }
+    
+    static func newPost(userId: String, caption: String, imageDownloadUrl: String) {
+        let datePosted = Date().timeIntervalSince1970
+        guard let key = PostModel.collection.childByAutoId().key else { return }
+        let post:[String: Any] = ["user": userId,
+                    "image": imageDownloadUrl,
+                    "caption": caption,
+                    "date": datePosted]
+        PostModel.collection.updateChildValues(["\(key)": post])
+        let personalRef = UserModel.personalFeed
+        personalRef.updateChildValues(["\(key)": post])
+        
+    }
+    
+    static func getPostCount(for userId: String, completion: @escaping(_ postCount: Int) -> Void) {
+        let userPostRef = UserModel.personalFeed.child(userId)
+        userPostRef.observeSingleEvent(of: .value) { (snapshot) in
+            let postCount = Int(snapshot.childrenCount)
+            completion(postCount)
+            return
+        }
+    }
+    
+    var key: String!
+    var date: Date?
+    var userId: String?
+    var caption: String?
+    var imageURL: URL?
+    
+    init?(_ snapshot: DataSnapshot) {
+        guard let value = snapshot.value as? [String: Any] else { return }
+        guard let date = value["date"] as? Double else { return nil }
+        guard let userId = value["user"] as? String else { return nil }
+        guard let imagePath = value["image"] as? String else { return nil }
+        guard let imageURL = URL(string: imagePath) else { return nil }
+        guard let caption = value["caption"] as?  String else  { return nil }
+        
+        self.key = snapshot.key
+        self.date = Date.init(timeIntervalSince1970: date)
+        self.userId = userId
+        self.caption = caption
+        self.imageURL = imageURL
+    }
+    
+    static func deletePost(id postId: String) {
+        PostModel.collection.child(postId).removeValue()
+        CommentsModel.collection.child(postId).removeValue()
+        LikesModel.collection.child(postId).removeValue()
+        if let userId = Auth.auth().currentUser?.uid {
+            UserModel.personalFeed.child(userId).child(postId).removeValue()
+        }
+    }
 }

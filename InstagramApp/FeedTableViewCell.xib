@@ -30,6 +30,9 @@
                         <state key="normal" title="Title">
                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="userNameButtonDidTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="g3a-lC-d1f"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frJ-az-9iL">
                         <rect key="frame" x="539" y="16" width="40" height="40"/>
@@ -38,6 +41,9 @@
                             <constraint firstAttribute="width" constant="40" id="HWP-ps-VZ1"/>
                         </constraints>
                         <state key="normal" image="more_icon"/>
+                        <connections>
+                            <action selector="deletePostDidTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WTA-QH-Gzh"/>
+                        </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="djT-VD-BUQ">
                         <rect key="frame" x="0.0" y="66" width="599" height="449.5"/>
@@ -52,6 +58,9 @@
                             <constraint firstAttribute="height" constant="25" id="EPa-dS-vb0"/>
                         </constraints>
                         <state key="normal" image="like_icon"/>
+                        <connections>
+                            <action selector="likeButtonDidTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BiY-xU-XIJ"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pwm-xX-KIl">
                         <rect key="frame" x="73.5" y="525.5" width="25" height="25"/>
@@ -60,6 +69,9 @@
                             <constraint firstAttribute="height" constant="25" id="cJS-uG-r6u"/>
                         </constraints>
                         <state key="normal" image="comment_icon"/>
+                        <connections>
+                            <action selector="viewCommentsButtonDidTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Mci-WL-M48"/>
+                        </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Twq-Qf-ghb">
                         <rect key="frame" x="123.5" y="525.5" width="28.5" height="25"/>
@@ -94,6 +106,9 @@
                         <state key="normal" title="View Comments">
                             <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
+                        <connections>
+                            <action selector="viewCommentsButtonDidTouch:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ana-Xl-Smo"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="17 Sept" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ka-ny-xl8">
                         <rect key="frame" x="20" y="662" width="559" height="16"/>
@@ -140,6 +155,7 @@
             <connections>
                 <outlet property="commentCountButton" destination="7nb-wZ-LcL" id="0o1-2s-A5E"/>
                 <outlet property="dateLabel" destination="8Ka-ny-xl8" id="BMH-gs-mqb"/>
+                <outlet property="likesButton" destination="3P7-ws-M49" id="aPU-e4-a8L"/>
                 <outlet property="likesCountLabel" destination="fJG-85-mXp" id="uKG-R2-CiL"/>
                 <outlet property="postCommentLabel" destination="oce-aT-Qyz" id="CHv-g7-n9r"/>
                 <outlet property="postImage" destination="djT-VD-BUQ" id="3lH-1d-CyM"/>

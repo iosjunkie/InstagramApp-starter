@@ -68,6 +68,12 @@ class ActivityViewController: UIViewController, UIScrollViewDelegate {
 }
 
 extension ActivityViewController: ActivityDelegate {
+    func activityDidTouch() {
+        let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        let profileVC = profileStoryboard.instantiateViewController(withIdentifier: "Profile") as! ProfileViewController
+        navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
     func scrollTo(index: Int) {
         if currentIndex == index {
             return
