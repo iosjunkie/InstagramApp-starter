@@ -14,7 +14,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     @IBOutlet weak var collectionView: UICollectionView!
     var searchController:UISearchController!
-    lazy var posts = [PostModel]()
+    lazy var posts: NSMutableArray = []
     let PAGINATION_COUNT: UInt = 10 // unsigned can't be negative
         
     var oldRef: DatabaseReference?
@@ -29,7 +29,7 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
         
         let storyboard = UIStoryboard(name: "Search", bundle: nil)
         let searchResultsVC = storyboard.instantiateViewController(withIdentifier: "SearchResults") as! SearchResultsTableViewController
-        searchResultsVC.navControl = navigationController
+        searchResultsVC.navControl = navigationController!
         searchController = UISearchController(searchResultsController: searchResultsVC)
         searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.showsCancelButton = false
@@ -130,8 +130,8 @@ class SearchViewController: UIViewController, UICollectionViewDelegate, UICollec
                 let items = snapshot.children.allObjects
                 var indexes: [IndexPath] = []
                 if items.count > 1 {
-                    for i in 2...items.count {
-                        let data = items[items.count - 1] as! DataSnapshot
+                    for _ in 2...items.count {
+                        _ = items[items.count - 1] as! DataSnapshot
                         indexes.append(IndexPath(row: strongSelf.posts.count, section: 0))
                         if let post = PostModel(snapshot) {
                             strongSelf.posts.add(post)

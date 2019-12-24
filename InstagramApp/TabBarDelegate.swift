@@ -25,7 +25,7 @@ class TabBarDelegate: NSObject, UITabBarControllerDelegate {
             return false
         }
         
-        guard let controllerIndex = tabBarController.viewControllers?.index(of: viewController) else {
+        guard let controllerIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
             return true
         }
         

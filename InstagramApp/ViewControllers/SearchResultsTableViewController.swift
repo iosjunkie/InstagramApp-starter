@@ -15,7 +15,7 @@ class SearchResultsTableViewController: UITableViewController, UISearchResultsUp
     var filteredResults = [UserModel]()
     var shouldShowSearchResults = false
     let tableRefreshControl = UIRefreshControl()
-    let navControl = UINavigationController!
+    var navControl = UINavigationController()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -128,7 +128,7 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 guard let post = PostModel(snapshot) else { continue }
                 strongSelf.posts.insert(post, at: 0)
             }
-            strongSelf.firstChild = snapshot.children.allObjects.first as! DataSnapshot
+            strongSelf.firstChild = snapshot.children.allObjects.first as? DataSnapshot
             let lastChild = snapshot.children.allObjects.last as? DataSnapshot
             strongSelf.observeNewItems(lastChild, newRef: userPostsRef)
             DispatchQueue.main.async {
@@ -196,8 +196,8 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 let items = snapshot.children.allObjects
                 var indexes: [IndexPath] = []
                 if items.count > 1 {
-                    for i in 2...items.count {
-                        let data = items[items.count - 1] as! DataSnapshot
+                    for _ in 2...items.count {
+                        _ = items[items.count - 1] as! DataSnapshot
                         indexes.append(IndexPath(row: strongSelf.posts.count, section: 2))
                         if let post = PostModel(snapshot) {
                             strongSelf.posts.add(post)

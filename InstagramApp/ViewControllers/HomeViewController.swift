@@ -112,8 +112,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let items = snapshot.children.allObjects
                 var indexes: [IndexPath] = []
                 if items.count > 1 {
-                    for i in 2...items.count {
-                        let data = items[items.count - 1] as! DataSnapshot
+                    for _ in 2...items.count {
+                        _ = items[items.count - 1] as! DataSnapshot
                         indexes.append(IndexPath(row: strongSelf.posts.count, section: 0))
                         if let post = PostModel(snapshot) {
                             strongSelf.posts.add(post)

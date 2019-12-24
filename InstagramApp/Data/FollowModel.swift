@@ -52,7 +52,7 @@ class FollowModel {
             } else {
                 followingRef.child(followUserId).setValue(true)
                 followersRef.child(currentId).setValue(true)
-                completionn(true)
+                completion(true)
             }
         }
     }
