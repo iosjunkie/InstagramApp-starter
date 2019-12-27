@@ -12,6 +12,7 @@ An Exercise To Learn UI/UX and iOS Development by Gwinyai Nyatsoka
   - validation in login and sign up
   - creating a custom spinner
 - Providing the right amount of constants in constraints
+  - Though, not entirely (WIP)
 - Providing the right font sizes and weights
 - Creating table view cells along with their respected xib files
   - and registering the xib files
@@ -28,3 +29,4 @@ An Exercise To Learn UI/UX and iOS Development by Gwinyai Nyatsoka
   - Scroll down pagination
   - Filling a whole search bar in the navigation bar
   - Search results view
+  - Saving images in Firebase and accessing them
